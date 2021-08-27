@@ -60,7 +60,7 @@ export default class AllJournals extends Component {
                     .reverse()
                     .map((item) =>
                         <div key={item.id}>
-                            <JournalPost  body={item} />
+                            <JournalPost  body={item} PostId={3}/>
                         </div>
                 )}
 
