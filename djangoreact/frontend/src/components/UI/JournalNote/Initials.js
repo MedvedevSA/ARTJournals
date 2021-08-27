@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styles from "./Initials.css"
+import "./Initials.css"
 
 export default class JournalPost extends React.Component {
     render(){
@@ -25,7 +26,7 @@ export default class JournalPost extends React.Component {
                 </div>
                 <div>
                     {body.tags.map((item) => 
-                        <div key={item.id}>
+                        <div key={item.id} className={styles.teststyle}>
                             <a href={"/journals/group/" + item.id}>
                                 {item.tag_name}
                             </a> 
