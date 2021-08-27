@@ -37,15 +37,13 @@ export default class JournalPost extends React.Component {
     }
 
     render(){
-        console.log(this.props.body);
-        const body = this.props.body;
-        const { error, isLoaded, items } = this.state;
-        console.log(items)
+        const { error, isLoaded, items: body } = this.state;
+        console.log(body)
         if (!isLoaded) {
         return <div>Загрузка... 
                     <div>
                         {
-                            console.log(items)
+                            console.log(body)
                         }
                     </div>
             </div>;
@@ -60,12 +58,9 @@ export default class JournalPost extends React.Component {
 
                     <div class="row">
                         <div class="col">
-                            {/**
-                            <Initials body={body}/>
-                            * 
-                            */}
                       
-                            <ReactMarkdown remarkPlugins={[]} children={items.note} transformImageUri ={(uri) => uri.replace("/uploads/","https:teststrapi.duckdns.org/uploads/")}/> 
+                            <Initials body={body}/>
+                            <ReactMarkdown remarkPlugins={[]} children={body.note} transformImageUri ={(uri) => uri.replace("/uploads/","https:teststrapi.duckdns.org/uploads/")}/> 
                         </div>
                     </div>
                 </div>

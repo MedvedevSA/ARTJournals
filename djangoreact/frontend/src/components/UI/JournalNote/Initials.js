@@ -24,7 +24,7 @@ export default class JournalPost extends React.Component {
                 <div>
                     {body.tags.map((item) => 
                         <div>
-                            <a href={"group/" + item.id}>
+                            <a href={"/journals/group/" + item.id}>
                                 {item.tag_name}
                             </a> 
                         </div>
@@ -32,7 +32,7 @@ export default class JournalPost extends React.Component {
                     )}
                 </div>
                 <div>
-                    <a href={"batch/" + body.project.id}>
+                    <a href={"/journals/batch/" + body.project.id}>
                         {body.project.batch_number}
                     </a> 
                 </div>

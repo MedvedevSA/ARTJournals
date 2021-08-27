@@ -5,6 +5,7 @@ import {render} from "react-dom";
 import HomePage from "./components/HomePage";
 import AllJournals from "./components/AllJournals"
 import TypeJournals from "./components/TypeJournals"
+import url from "url"
 import {
     BrowserRouter as Router,
     Switch,
@@ -33,7 +34,7 @@ export default class App extends Component {
                 <Router >
                     <Switch>
                         <Route exact path={APP_URL} component={AllJournals} />
-                        <Route path={APP_URL + "test"} component={TypeJournals} />
+                        <Route path={APP_URL + "group"} component={TypeJournals} />
                     </Switch>
                 </Router>
             )

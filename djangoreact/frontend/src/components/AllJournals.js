@@ -41,6 +41,7 @@ export default class AllJournals extends Component {
     render(){
 
         const { error, isLoaded, items } = this.state;
+
         if (error) {
         return <div>Ошибка: {error.message}</div>;
         } else if (!isLoaded) {
@@ -60,7 +61,7 @@ export default class AllJournals extends Component {
                     .reverse()
                     .map((item) =>
                         <div key={item.id}>
-                            <JournalPost  body={item} PostId={3}/>
+                            <JournalPost  body={item} PostId={item.id}/>
                         </div>
                 )}
 
