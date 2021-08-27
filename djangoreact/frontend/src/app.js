@@ -5,6 +5,7 @@ import {render} from "react-dom";
 import HomePage from "./components/HomePage";
 import AllJournals from "./components/AllJournals"
 import TypeJournals from "./components/TypeJournals"
+import BatchJournals from "./components/BatchJournal"
 import url from "url"
 import {
     BrowserRouter as Router,
@@ -34,7 +35,8 @@ export default class App extends Component {
                 <Router >
                     <Switch>
                         <Route exact path={APP_URL} component={AllJournals} />
-                        <Route path={APP_URL + "group/:number"} component={TypeJournals} />
+                        <Route path={APP_URL + "group/:id"} component={TypeJournals} />
+                        <Route path={APP_URL + "batch/:id"} component={BatchJournals} />
                     </Switch>
                 </Router>
             )

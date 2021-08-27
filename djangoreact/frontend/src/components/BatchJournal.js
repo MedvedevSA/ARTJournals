@@ -6,7 +6,7 @@ import JournalPost from './UI/JournalNote/JournalPost'
 
 
 
-export default class TypeJournals extends Component {
+export default class BatchJournal extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -14,7 +14,7 @@ export default class TypeJournals extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/tags/" + props.match.params.id;
+        this.url_backend  = "http://nnmservice.ru:1337/projects/" + props.match.params.id;
     }
     
     componentDidMount() {
