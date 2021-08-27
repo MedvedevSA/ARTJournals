@@ -34,7 +34,7 @@ export default class App extends Component {
                 <Router >
                     <Switch>
                         <Route exact path={APP_URL} component={AllJournals} />
-                        <Route path={APP_URL + "group"} component={TypeJournals} />
+                        <Route path={APP_URL + "group/:number"} component={TypeJournals} />
                     </Switch>
                 </Router>
             )

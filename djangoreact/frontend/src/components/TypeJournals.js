@@ -14,8 +14,7 @@ export default class TypeJournals extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/tags/2";
-         
+        this.url_backend  = "http://nnmservice.ru:1337/tags/" + props.match.params.number;
     }
     
     componentDidMount() {
