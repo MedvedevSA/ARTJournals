@@ -55,7 +55,7 @@ export default class AllJournals extends Component {
 
         } else {
         return (
-            <div class="col-sm-8">
+            <div className="col-sm-8">
                 {
                     this.state.items
                     .reverse()

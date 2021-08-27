@@ -38,26 +38,22 @@ export default class JournalPost extends React.Component {
 
     render(){
         const { error, isLoaded, items: body } = this.state;
-        console.log(body)
         if (!isLoaded) {
         return <div>Загрузка... 
                     <div>
-                        {
-                            console.log(body)
-                        }
                     </div>
             </div>;
 
         } else {
             return (
-                <div class="container-fluid journal-note">
+                <div className="container-fluid journal-note">
                     {/*
                     <Initials/>
                         
                     */}
 
-                    <div class="row">
-                        <div class="col">
+                    <div className="row">
+                        <div className="col" >
                       
                             <Initials body={body}/>
                             <ReactMarkdown remarkPlugins={[]} children={body.note} transformImageUri ={(uri) => uri.replace("/uploads/","https:teststrapi.duckdns.org/uploads/")}/> 

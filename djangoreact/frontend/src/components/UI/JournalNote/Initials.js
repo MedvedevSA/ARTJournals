@@ -3,7 +3,9 @@ import styles from "./Initials.css"
 
 export default class JournalPost extends React.Component {
     render(){
+        {/**
         console.log(this.props.body);
+         */}
         let body = this.props.body;
         {/*
         date = date.replace(/(\d{4})-(\d{1,2})-(\d{1,2})T(\d{1,2}):(\d{1,2}).*$/g,
@@ -23,7 +25,7 @@ export default class JournalPost extends React.Component {
                 </div>
                 <div>
                     {body.tags.map((item) => 
-                        <div>
+                        <div key={item.id}>
                             <a href={"/journals/group/" + item.id}>
                                 {item.tag_name}
                             </a> 
