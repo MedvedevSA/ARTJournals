@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import ReactMarkdown from 'react-markdown';
 import {render} from "react-dom";
 import Initials from "./UI/JournalNote/Initials";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import JournalPost from './UI/JournalNote/JournalPost'
+import Container from '@material-ui/core/Container';
 
 
 
@@ -43,19 +45,13 @@ export default class AllJournals extends Component {
         const { error, isLoaded, items } = this.state;
 
         if (error) {
-        return <div>Ошибка: {error.message}</div>;
+        return <div>Ошибка:  {error.message}</div>;
         } else if (!isLoaded) {
-        return <div>Загрузка... 
-                    <div>
-                        {
-                            console.log(items)
-                        }
-                    </div>
-            </div>;
-
+        return <CircularProgress/>
         } else {
         return (
-            <div className="col-sm-8">
+            <Container maxWidth="md">
+                
                 {
                     this.state.items
                     .reverse()
@@ -64,25 +60,8 @@ export default class AllJournals extends Component {
                             <JournalPost  body={item} PostId={item.id}/>
                         </div>
                 )}
-
-            </div>
+            </Container>
         );
     }
     }
 }
-
-                    {/*
-                   
-                        <div class="container-fluid journal-note">
-                                    {/*
-                                    <Initials/>
-                   
-                            <div class="row">
-                                <div class="col">
-                                    <ReactMarkdown remarkPlugins={[]} children={item.richtext} transformImageUri ={(uri) => uri.replace("/uploads/","https:teststrapi.duckdns.org/uploads/")}/>
-                                </div>
-                            </div>
-
- 
-                        </div>
-                    */}

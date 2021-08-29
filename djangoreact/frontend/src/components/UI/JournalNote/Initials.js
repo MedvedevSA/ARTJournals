@@ -10,11 +10,22 @@ import TagBlock from "./TagBlock"
 export default class JournalPost extends React.Component {
     render(){
         let body = this.props.body;
-
+        const re = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}).*/;
+        const new_str = "$4:$5 $3/$2/$1";
+        const fdate = body.created_at.replace(re, new_str);
         return (
             <div >
                 <div>
-                    {body.created_at}
+                    {
+                        body.admin_user != null ?
+                            <div>
+                                {body.admin_user.firstname}
+                            </div>
+                            :
+                            null
+                    }
+
+                    {fdate}
                 </div>
                 
                 <TagBlock tagList={body.tags}/>

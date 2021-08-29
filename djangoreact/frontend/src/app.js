@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage";
 import AllJournals from "./components/AllJournals"
 import TypeJournals from "./components/TypeJournals"
 import BatchJournals from "./components/BatchJournal"
+import CNCInfo from "./components/CNCInfo";
 import url from "url"
 import {
     BrowserRouter as Router,
@@ -37,6 +38,7 @@ export default class App extends Component {
                         <Route exact path={APP_URL} component={AllJournals} />
                         <Route path={APP_URL + "group/:id"} component={TypeJournals} />
                         <Route path={APP_URL + "batch/:id"} component={BatchJournals} />
+                        <Route path={APP_URL + "cncinfo/"} component={CNCInfo} />
                     </Switch>
                 </Router>
             )
