@@ -1,2 +1,0 @@
-# ARTJournals
-ARTJournals
