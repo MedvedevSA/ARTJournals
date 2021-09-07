@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import ReactMarkdown from 'react-markdown';
 import {render} from "react-dom";
-import Initials from "./UI/JournalNote/Initials";
-import JournalPost from './UI/JournalNote/JournalPost'
+import JournalPost from '../UI/JournalNote/JournalPost'
+import Container from '@material-ui/core/Container';
+import TagInfoBaner from "../UI/JournalNote/TagInfoBaner";
 
 
-
-export default class AllJournals extends Component {
+export default class TypeJournals extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -14,8 +14,7 @@ export default class AllJournals extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/journal-notes";
-         
+        this.url_backend  = "http://nnmservice.ru:1337/tags/" + props.match.params.id;
     }
     
     componentDidMount() {
@@ -54,34 +53,20 @@ export default class AllJournals extends Component {
 
         } else {
         return (
-            <div class="col-sm-8">
+            <Container maxWidth="md">
+                <TagInfoBaner name={items.tag_name}/>
                 {
-                    this.state.items
+                    this.state.items.journal_notes
                     .reverse()
                     .map((item) =>
                         <div key={item.id}>
-                            <JournalPost  body={item} />
+                            <JournalPost  body={item} PostId={item.id} />
                         </div>
                 )}
 
-            </div>
+            </Container>
         );
     }
     }
 }
 
-                    {/*
-                   
-                        <div class="container-fluid journal-note">
-                                    {/*
-                                    <Initials/>
-                   
-                            <div class="row">
-                                <div class="col">
-                                    <ReactMarkdown remarkPlugins={[]} children={item.richtext} transformImageUri ={(uri) => uri.replace("/uploads/","https:teststrapi.duckdns.org/uploads/")}/>
-                                </div>
-                            </div>
-
- 
-                        </div>
-                    */}

@@ -1,33 +1,24 @@
-import React, {useState} from 'react';
+import React, { Component } from "react";
 import ReactMarkdown from 'react-markdown';
-import Initials from './Initials';
 import {render} from "react-dom";
+import Initials from "./UI/JournalNote/Initials";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import JournalPost from './UI/JournalNote/JournalPost'
+import TestRealTimeUpd from "./UI/JournalNote/TestRealTimeUpd";
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(5),
-    },
-  },
-  test: {
-      padding: '10px',
-      margin: '10px 0px 10px 0px',
-  },
-}));
-
-export default class JournalPost extends React.Component {
+export default class CNCInfo extends Component {
     constructor(props){
         super(props);
         this.state = {
             data: [],
-            isLoaded: false,
+            loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/journal-notes/" + this.props.PostId;
+        this.url_backend  = "http://nnmservice.ru:1337/journal-notes";
          
     }
     
@@ -51,30 +42,30 @@ export default class JournalPost extends React.Component {
                 }
             )
     }
-
-    Content(props){
-        var classes = useStyles();
-        return (
-            <Paper className={classes.test}>
-                {console.log(props)}
-                <Initials body={props.body}/>
-                <ReactMarkdown remarkPlugins={[]} children={props.body.note} transformImageUri ={(uri) => uri.replace("/uploads/","https:teststrapi.duckdns.org/uploads/")}/> 
-            </Paper>
-
-        ) 
-    }
-
     render(){
-        const { error, isLoaded, items: body } = this.state;
-        if (!isLoaded) {
+
+        const { error, isLoaded, items } = this.state;
+
+        if (error) {
+        return <div>Ошибка:  {error.message}</div>;
+        } else if (!isLoaded) {
         return <CircularProgress/>
         } else {
-            return (
-                <this.Content body={body}/>
-            )
-        }
+        return (
+            <Container maxWidth="md">
+                <Grid container spacing={2}>
+                    {[1,2,3].map((id) => (
+                        <Grid item xs>
+                            <Paper>
+
+                                <TestRealTimeUpd cncId={id} />
+                            </Paper>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Container>
+        );
+    }
     }
 }
-
-
 
