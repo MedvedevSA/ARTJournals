@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import ReactMarkdown from 'react-markdown';
 import {render} from "react-dom";
-import Initials from "./UI/JournalNote/Initials";
-import JournalPost from './UI/JournalNote/JournalPost'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import JournalPost from '../UI/JournalNote/JournalPost'
+import Container from '@material-ui/core/Container';
 
 
 
-export default class TypeJournals extends Component {
+export default class AllJournals extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -14,7 +15,8 @@ export default class TypeJournals extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/tags/" + props.match.params.id;
+        this.url_backend  = "http://nnmservice.ru:1337/journal-notes";
+         
     }
     
     componentDidMount() {
@@ -40,32 +42,25 @@ export default class TypeJournals extends Component {
     render(){
 
         const { error, isLoaded, items } = this.state;
-        if (error) {
-        return <div>Ошибка: {error.message}</div>;
-        } else if (!isLoaded) {
-        return <div>Загрузка... 
-                    <div>
-                        {
-                            console.log(items)
-                        }
-                    </div>
-            </div>;
 
+        if (error) {
+        return <div>Ошибка:  {error.message}</div>;
+        } else if (!isLoaded) {
+        return <CircularProgress/>
         } else {
         return (
-            <div class="col-sm-8">
+            <Container maxWidth="md">
+                
                 {
-                    this.state.items.journal_notes
+                    this.state.items
                     .reverse()
                     .map((item) =>
                         <div key={item.id}>
-                            <JournalPost  body={item} PostId={item.id} />
+                            <JournalPost  body={item} PostId={item.id}/>
                         </div>
                 )}
-
-            </div>
+            </Container>
         );
     }
     }
 }
-

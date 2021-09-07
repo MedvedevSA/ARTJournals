@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
+import { Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,7 +11,11 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     '& > *': {
       margin: theme.spacing(0.5),
-    },
+    }
+  },
+  link: {
+      color:"#909090",
+      fontSize:"small",
   },
 }));
 
@@ -27,21 +32,16 @@ export default function TagBlock( props ) {
     };
 
     return (
-        <div className={classes.root}>
+        <>
             {
                 props.tagList.map((tag)=>
                     <span key={tag.id}>
-                        <Chip 
-                            size="small" 
-                            label={tag.tag_name} 
-                            component="a" 
-                            href={"/journals/group/" + tag.id} 
-                            clickable 
-                            variant="outlined" 
-                          />
+                        <Link  href={"/journals/group/" + tag.id} className={classes.link}>
+                          ~{tag.tag_name}
+                        </Link>
                     </span>
                 )
             }
-        </div>
+        </>
   );
 }

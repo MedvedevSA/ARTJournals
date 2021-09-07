@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {render} from "react-dom";
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -83,7 +84,7 @@ export default class TestRealTimeUpd extends React.Component {
 
   render() {
     return (
-      <span>
+      <>
         {
           this.state.items != null ? 
             <Button variant="contained" color={this.state.items.run == 3 ? "primary" : "secondary"}>
@@ -97,7 +98,7 @@ export default class TestRealTimeUpd extends React.Component {
             :
             <CircularProgress />
           }
-      </span>
+      </>
     );
   }
 }

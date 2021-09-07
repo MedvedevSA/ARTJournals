@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ReactMarkdown from 'react-markdown';
 import {render} from "react-dom";
-import Initials from "./UI/JournalNote/Initials";
-import JournalPost from './UI/JournalNote/JournalPost'
-
+import JournalPost from '../UI/JournalNote/JournalPost'
+import BatchInfoBaner from "../UI/JournalNote/BatchInfoBaner";
+import Container from '@material-ui/core/Container';
 
 
 export default class BatchJournal extends Component {
@@ -53,7 +53,15 @@ export default class BatchJournal extends Component {
 
         } else {
         return (
-            <div class="col-sm-8">
+            <Container maxWidth="md">
+                {/*
+                {console.log(items)}
+                */}
+                <BatchInfoBaner 
+                    name={items.batch_number}
+                    description={items.description}
+                    machine_number={items.machine.name}
+                    />
                 {
                     this.state.items.journal_notes
                     .reverse()
@@ -63,7 +71,7 @@ export default class BatchJournal extends Component {
                         </div>
                 )}
 
-            </div>
+            </Container>
         );
     }
     }

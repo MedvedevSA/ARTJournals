@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import ReactMarkdown from 'react-markdown';
 import {render} from "react-dom";
-import Initials from "./UI/JournalNote/Initials";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import JournalPost from './UI/JournalNote/JournalPost'
+import JournalPost from '../UI/JournalNote/JournalPost'
 import Container from '@material-ui/core/Container';
+import TagInfoBaner from "../UI/JournalNote/TagInfoBaner";
 
 
-
-export default class AllJournals extends Component {
+export default class TypeJournals extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -16,8 +14,7 @@ export default class AllJournals extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/journal-notes";
-         
+        this.url_backend  = "http://nnmservice.ru:1337/tags/" + props.match.params.id;
     }
     
     componentDidMount() {
@@ -43,25 +40,33 @@ export default class AllJournals extends Component {
     render(){
 
         const { error, isLoaded, items } = this.state;
-
         if (error) {
-        return <div>Ошибка:  {error.message}</div>;
+        return <div>Ошибка: {error.message}</div>;
         } else if (!isLoaded) {
-        return <CircularProgress/>
+        return <div>Загрузка... 
+                    <div>
+                        {
+                            console.log(items)
+                        }
+                    </div>
+            </div>;
+
         } else {
         return (
             <Container maxWidth="md">
-                
+                <TagInfoBaner name={items.tag_name}/>
                 {
-                    this.state.items
+                    this.state.items.journal_notes
                     .reverse()
                     .map((item) =>
                         <div key={item.id}>
-                            <JournalPost  body={item} PostId={item.id}/>
+                            <JournalPost  body={item} PostId={item.id} />
                         </div>
                 )}
+
             </Container>
         );
     }
     }
 }
+

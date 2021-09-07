@@ -5,6 +5,9 @@ import Initials from "./UI/JournalNote/Initials";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import JournalPost from './UI/JournalNote/JournalPost'
 import TestRealTimeUpd from "./UI/JournalNote/TestRealTimeUpd";
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
 
 
 export default class CNCInfo extends Component {
@@ -49,11 +52,18 @@ export default class CNCInfo extends Component {
         return <CircularProgress/>
         } else {
         return (
-            <div className="col-sm-8">
-                <TestRealTimeUpd cncId={1} />
-                <TestRealTimeUpd cncId={2} />
-                <TestRealTimeUpd cncId={3} />
-            </div>
+            <Container maxWidth="md">
+                <Grid container spacing={2}>
+                    {[1,2,3].map((id) => (
+                        <Grid item xs>
+                            <Paper>
+
+                                <TestRealTimeUpd cncId={id} />
+                            </Paper>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Container>
         );
     }
     }
