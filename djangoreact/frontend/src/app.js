@@ -2,12 +2,13 @@
 import React, { Component } from "react";
 import ReactMarkdown from 'react-markdown'
 import {render} from "react-dom";
-import HomePage from "./components/HomePage";
 import AllJournals from "./components/Pages/AllJournals"
 import TypeJournals from "./components/Pages/TypeJournals"
 import BatchJournals from "./components/Pages/BatchJournal"
 import CNCInfo from "./components/CNCInfo";
 import url from "url"
+import BatchList from "./components/Pages/BatchList";
+import TagList from "./components/Pages/TagList";
 import {
     BrowserRouter as Router,
     Switch,
@@ -38,6 +39,8 @@ export default class App extends Component {
                         <Route exact path={APP_URL} component={AllJournals} />
                         <Route path={APP_URL + "group/:id"} component={TypeJournals} />
                         <Route path={APP_URL + "batch/:id"} component={BatchJournals} />
+                        <Route path={APP_URL + "all-batch"} component={BatchList} />
+                        <Route path={APP_URL + "all-group"} component={TagList} />
                         <Route path={APP_URL + "cncinfo/"} component={CNCInfo} />
                     </Switch>
                 </Router>

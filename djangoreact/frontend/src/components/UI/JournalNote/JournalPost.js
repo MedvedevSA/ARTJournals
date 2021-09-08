@@ -5,7 +5,9 @@ import {render} from "react-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 
+const conf = require("../../../config.json");
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,12 +29,14 @@ export default class JournalPost extends React.Component {
             isLoaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/journal-notes/" + this.props.PostId;
+        this.url_request = conf.cms_url;
+        this.url_request += conf.api.note;
+        this.url_request  += "/" + this.props.PostId;
          
     }
     
     componentDidMount() {
-        fetch(this.url_backend)
+        fetch(this.url_request)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -58,7 +62,8 @@ export default class JournalPost extends React.Component {
             <Paper className={classes.test}>
                 {console.log(props)}
                 <Initials body={props.body}/>
-                <ReactMarkdown remarkPlugins={[]} children={props.body.note} transformImageUri ={(uri) => uri.replace("/uploads/","https:teststrapi.duckdns.org/uploads/")}/> 
+                <Divider/>
+                <ReactMarkdown remarkPlugins={[]} children={props.body.note} transformImageUri ={(uri) => uri.replace("/uploads/","https://artcms.nnmservice.ru/uploads/")}/> 
             </Paper>
 
         ) 

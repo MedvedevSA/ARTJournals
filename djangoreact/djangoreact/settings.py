@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-d%be7g-se+t_$onac@&q+(8z^f$)bo4$^z!&4!v#r3%x@)1b+j
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "art.nnmservice.ru",
     "nnmservice.ru",
     'localhost'
 ]

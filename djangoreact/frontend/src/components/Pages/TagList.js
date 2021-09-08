@@ -6,7 +6,7 @@ import JournalPost from '../UI/JournalNote/JournalPost'
 import TagNote from '../UI/JournalNote/TagNote'
 import Container from '@material-ui/core/Container';
 
-
+const conf = require("../../config.json");
 
 export default class TagList extends Component {
     constructor(props){
@@ -16,12 +16,13 @@ export default class TagList extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/tags";
+        this.url_request = conf.cms_url;
+        this.url_request += conf.api.tag;
          
     }
     
     componentDidMount() {
-        fetch(this.url_backend)
+        fetch(this.url_request)
             .then(res => res.json())
             .then(
                 (result) => {

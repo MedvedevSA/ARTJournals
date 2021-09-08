@@ -18,7 +18,7 @@ export default class CNCInfo extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/journal-notes";
+        this.url_backend  = "https://artcms.nnmservice.ru/journal-notes";
          
     }
     

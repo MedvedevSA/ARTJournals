@@ -10,6 +10,8 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from '@material-ui/core';
 
+const conf = require("../../../config.json");
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -30,12 +32,14 @@ export default class BatchNote extends React.Component {
             isLoaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/projects/" + this.props.PostId;
+        this.url_request = conf.cms_url;
+        this.url_request += conf.api.project;
+        this.url_request += "/" + this.props.PostId;
          
     }
     
     componentDidMount() {
-        fetch(this.url_backend)
+        fetch(this.url_request)
             .then(res => res.json())
             .then(
                 (result) => {

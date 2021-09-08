@@ -1,0 +1,9 @@
+{
+    "cms_url" : "https://artcms.nnmservice.ru",
+    "blog_url" : "https://art.nnmservice.ru",
+    "api" : {
+        "note" : "/journal-notes",
+        "tag" : "/tags",
+        "project" : "/projects"
+    }
+}

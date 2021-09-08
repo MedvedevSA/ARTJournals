@@ -5,6 +5,7 @@ import JournalPost from '../UI/JournalNote/JournalPost'
 import BatchInfoBaner from "../UI/JournalNote/BatchInfoBaner";
 import Container from '@material-ui/core/Container';
 
+const conf = require("../../config.json");
 
 export default class BatchJournal extends Component {
     constructor(props){
@@ -14,11 +15,14 @@ export default class BatchJournal extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/projects/" + props.match.params.id;
+        this.url_request = conf.cms_url;
+        this.url_request += conf.api.project;
+        this.url_request += "/" + props.match.params.id;
+        
     }
     
     componentDidMount() {
-        fetch(this.url_backend)
+        fetch(this.url_request)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -60,7 +64,7 @@ export default class BatchJournal extends Component {
                 <BatchInfoBaner 
                     name={items.batch_number}
                     description={items.description}
-                    machine_number={items.machine.name}
+                    machine_number={items.machine?.name || "Станок не указан"}
                     />
                 {
                     this.state.items.journal_notes

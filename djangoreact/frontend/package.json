@@ -26,6 +26,9 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "dotenv": "^10.0.0",
+    "fs": "0.0.1-security",
+    "path-browserify": "^1.0.1",
     "react-markdown": "^6.0.3",
     "react-router-dom": "^5.2.0",
     "rehype-raw": "^6.0.0",

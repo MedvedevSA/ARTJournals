@@ -6,9 +6,9 @@ import JournalPost from '../UI/JournalNote/JournalPost'
 import BatchNote from '../UI/JournalNote/BatchNote'
 import Container from '@material-ui/core/Container';
 
+const conf = require("../../config.json");
 
-
-export default class BachList extends Component {
+export default class BatchList extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -16,12 +16,12 @@ export default class BachList extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/projects";
-         
+        this.url_request = conf.cms_url;
+        this.url_request += conf.api.project;
     }
     
     componentDidMount() {
-        fetch(this.url_backend)
+        fetch(this.url_request)
             .then(res => res.json())
             .then(
                 (result) => {

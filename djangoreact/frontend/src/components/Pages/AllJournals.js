@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import JournalPost from '../UI/JournalNote/JournalPost'
 import Container from '@material-ui/core/Container';
 
+const conf = require("../../config.json");
 
 
 export default class AllJournals extends Component {
@@ -15,12 +16,12 @@ export default class AllJournals extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/journal-notes";
-         
+        this.url_request = conf.cms_url;
+        this.url_request += conf.api.note;
     }
     
     componentDidMount() {
-        fetch(this.url_backend)
+        fetch(this.url_request)
             .then(res => res.json())
             .then(
                 (result) => {

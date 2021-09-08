@@ -5,6 +5,7 @@ import JournalPost from '../UI/JournalNote/JournalPost'
 import Container from '@material-ui/core/Container';
 import TagInfoBaner from "../UI/JournalNote/TagInfoBaner";
 
+const conf = require("../../config.json");
 
 export default class TypeJournals extends Component {
     constructor(props){
@@ -14,11 +15,13 @@ export default class TypeJournals extends Component {
             loaded: false,
             placeholder: "Loading"
         }
-        this.url_backend  = "http://nnmservice.ru:1337/tags/" + props.match.params.id;
+        this.url_request = conf.cms_url;
+        this.url_request += conf.api.tag;
+        this.url_request += "/" + props.match.params.id;
     }
     
     componentDidMount() {
-        fetch(this.url_backend)
+        fetch(this.url_request)
             .then(res => res.json())
             .then(
                 (result) => {
